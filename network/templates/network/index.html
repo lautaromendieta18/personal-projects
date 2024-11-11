@@ -1,0 +1,35 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div id="content" class="container">
+    {% if user.is_authenticated %}
+    <div class="border p-4">
+        
+        <div class="mb-3">
+            <form>
+                <h5>New Post</h5>
+                <textarea class="form-control" id="body" rows="1" style="resize: none;" placeholder="What's happening?"></textarea>
+                <button id="submit" class="mt-2 mb-2 btn btn-primary">Post</button>
+                <div id="messages"></div>
+            </form>
+        </div>
+        
+    </div>
+
+    {% endif %}
+
+    <div id="place-posts">
+
+    </div>
+
+    <div id="place-pagination" class="container text-center">
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/index.js' %}"></script>
+{% endblock %}

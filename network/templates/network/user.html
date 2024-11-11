@@ -1,0 +1,44 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div id="content" class="container">
+    <div class="border text-center p-4">
+        <img src="{% static 'network/images/usericon.png' %}" alt="..." width="150" class="rounded-circle">
+        <p id="usernameProfile" class="block">{{ userPage.username }}</p>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link disabled">Posts: {{ userPage.posts.all.count }}</a>
+            </li>
+            <li class="nav-item">
+              <a id="followersPlace" class="nav-link disabled">Followers: <span id="followersCount">{{ userPage.followers.all.count }}</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled">Following: {{ userPage.following.all.count }}</a>
+              </li>
+        </ul>
+        {% if user != userPage %}
+          {% if user.is_authenticated %}
+              {% if isFollowing %}
+                <button id="followButton" class="btn btn-outline-primary my-3">Unfollow</button>
+              {% else %}
+                <button id="followButton" class="btn btn-primary my-3">Follow</button>
+              {% endif %}
+          {% endif %}
+        {% endif %}
+    </div>
+    
+
+    <div id="place-posts">
+
+    </div>
+
+    <div id="place-pagination" class="container text-center">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/user.js' %}"></script>
+{% endblock %}
